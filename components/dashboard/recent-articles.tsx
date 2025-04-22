@@ -14,7 +14,7 @@ import {
 } from "../ui/table";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
-import { Articles, Comment, User } from "@prisma/client";
+import { Articles, Comment } from "@prisma/client";
 import { deleteArticle } from "@/actions/delete-article";
 
 type ArticleWithExtras = Articles & {

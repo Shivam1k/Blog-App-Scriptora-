@@ -1,16 +1,10 @@
 "use client"
-import Dashboard from "@/app/dashboard/page"
 import { Button } from "@/components/ui/button"
 import { BarChart, FileText, LayoutDashboard, MessageCircle, Settings } from "lucide-react"
 import Link from "next/link"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { useState } from "react"

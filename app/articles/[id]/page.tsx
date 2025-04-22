@@ -1,6 +1,5 @@
 import React from 'react'
 import { prisma } from "@/lib/prisma";
-import ArticleDetail from '@/components/articles/article-detail-page';
 import ArticleDetailPage from '@/components/articles/article-detail-page';
 
 type ArticleDetailPageProps = {

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"; // Adjust the path based on your 
 import { useSearchParams } from "next/navigation";
 import { SearchAction } from "@/actions/search";
 
-const searchInput = () => {
+const SearchInput = () => {
   const searchParams = useSearchParams();
 
 
@@ -26,4 +26,4 @@ const searchInput = () => {
   );
 };
 
-export default searchInput;
+export default SearchInput;
