@@ -108,3 +108,4 @@ export function EditArticleForm({ article }: EditArticleFormProps) {
     </Card>
   );
 } 
+

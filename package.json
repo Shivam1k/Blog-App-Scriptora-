@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npx prisma generate --schema=./prisma/schema.prisma && next build",
     "start": "next start",
     "lint": "next lint",
     "generate-pdf": "node convert-to-pdf.js",
-    "generate-flowcharts": "node generate-flowchart-images.js"
+    "generate-flowcharts": "node generate-flowchart-images.js",
+    "reset-prisma": "node scripts/reset-prisma.js",
+    "reset-prisma-win": "reset-prisma.bat",
+    "reset-prisma-ps": "powershell -ExecutionPolicy Bypass -File reset-prisma.ps1"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.14.3",
