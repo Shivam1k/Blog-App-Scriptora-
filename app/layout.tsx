@@ -4,8 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import {
   ClerkProvider 
- 
 } from '@clerk/nextjs'
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +28,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
     <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <body
@@ -42,6 +41,7 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
+        <Toaster position="top-right" />
       </body>
     </html>
     </ClerkProvider>

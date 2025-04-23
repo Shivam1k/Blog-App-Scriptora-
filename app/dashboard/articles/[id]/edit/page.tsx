@@ -1,29 +1,23 @@
-import EditArticlePage from "@/components/articles/edit-article-page";
-import { prisma } from "@/lib/prisma"; // ✅ Add this import
-import React from "react";
-import { notFound } from "next/navigation"; // optional for clean 404s
+import { getArticleById } from "@/actions/article";
+import { EditArticleForm } from "@/components/dashboard/edit-article-form";
+import { notFound } from "next/navigation";
 
-type EditArticleParams = {
-  params: { id: string }; // ✅ No need to wrap in Promise
-};
+interface EditArticleParams {
+  params: Promise<{ id: string }>;
+}
 
-const Page = async ({ params }: EditArticleParams) => {
-  const { id } = params;
-
-  const article = await prisma.articles.findUnique({
-    where: { id }, // Or where: { id: Number(id) } if `id` is a number
-  });
+export default async function EditArticlePage({ params }: EditArticleParams) {
+  const { id } = await params;
+  const article = await getArticleById(id);
 
   if (!article) {
-    // return <h1>Article not found for this {id}</h1>; // This works too
-    notFound(); // ✅ Next.js way to show 404 page
+    notFound();
   }
 
   return (
-    <div>
-      <EditArticlePage article={article} />
+    <div className="container mx-auto py-10">
+      <h1 className="text-2xl font-bold mb-6">Edit Article</h1>
+      <EditArticleForm article={article} />
     </div>
   );
-};
-
-export default Page;
+}
