@@ -22,10 +22,16 @@ const TopArticles = async () => {
           }
         }
       },
-      take: 3 // Limit to 3 articles
+      take: 3
     })
 
-    if (!articles || articles.length === 0) {
+    // Convert Date to string to avoid serialization issues
+    const safeArticles = articles.map((article) => ({
+      ...article,
+      createdAt: article.createdAt.toISOString()
+    }))
+
+    if (!safeArticles || safeArticles.length === 0) {
       return (
         <div className="text-center py-10">
           <p className="text-gray-500 dark:text-gray-400">No articles found.</p>
@@ -35,7 +41,7 @@ const TopArticles = async () => {
 
     return (
       <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-        {articles.map((article) => (
+        {safeArticles.map((article) => (
           <Card
             className={cn(
               "group relative overflow-hidden transition-all hover:scale-[1.02]",
@@ -71,7 +77,7 @@ const TopArticles = async () => {
                 </p>
 
                 <div className='mt-6 flex items-center justify-between text-sm text-gray-500 dark:text-gray-400'>
-                  <span>{article.createdAt ? new Date(article.createdAt).toLocaleDateString() : "No date"}</span>
+                  <span>{new Date(article.createdAt).toLocaleDateString()}</span>
                   <span>12 min to read</span>
                 </div>
               </Link>
@@ -91,7 +97,6 @@ const TopArticles = async () => {
 }
 
 export default TopArticles
-
 
 
 
