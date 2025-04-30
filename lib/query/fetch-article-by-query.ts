@@ -40,3 +40,42 @@ export const fetchArticleByQuery = async (searchText: string , skip:number  , ta
 
     return {articles , total};
  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  ┌────────────────────────┐
+//  │  Call fetchArticleByQuery │
+//  │ (searchText, skip, take)  │
+//  └────────────┬───────────┘
+//               │
+//               ▼
+//  ┌────────────────────────┐
+//  │  Begin Transaction     │
+//  └────────────┬───────────┘
+//               │
+// ┌───────────────┴────────────────┐
+// │                                │
+// ▼                                ▼
+// ┌───────────────────────┐     ┌────────────────────────┐
+// │ Fetch Matching Articles│     │ Count Matching Articles│
+// │ - title/category match │     │ - Same filters         │
+// │ - include author info  │     └────────────────────────┘
+// │ - skip & take used     │
+// └────────────┬───────────┘
+//   │
+//   ▼
+// ┌────────────────────────┐
+// │  Return {articles, total} │
+// └────────────────────────┘

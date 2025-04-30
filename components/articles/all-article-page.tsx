@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AvatarImage, AvatarFallback, Avatar } from "@radix-ui/react-avatar";
 import { Search } from "lucide-react";
 import { Prisma } from "@prisma/client";
+import Link from "next/link";
 
 type AllArticlePageProps = {
   articles: Prisma.ArticlesGetPayload<{
@@ -32,6 +33,7 @@ const AllArticlePage: React.FC<AllArticlePageProps> = async ({ articles }) => {
           className="group relative overflow-hidden translate-all hover:shadow-lg"
         >
           <div className="p-6">
+          <Link href={`/articles/${article.id}`}>
             <div className="relative mb-4 h-48 w-full overflow-hidden rounded-xl">
               <Image
                 src={article.featuredImage || ""}
@@ -57,6 +59,7 @@ const AllArticlePage: React.FC<AllArticlePageProps> = async ({ articles }) => {
 
               <div className="text-sm">{article.createdAt.toDateString()}</div>
             </div>
+          </Link>
           </div>
         </Card>
       ))}

@@ -52,7 +52,7 @@ const TopArticles = async () => {
           >
             <div className='p-6'>
               <Link href={`/articles/${article.id}`}>
-                <div className='relative mb-4 h-48 w-full overflow-hidden rounded-xl'>
+                <div className='relative mb-4 h-48 w-full overflow-hidden rounded-xl block'>
                   <Image
                     src={article.featuredImage || "/placeholder.png"}
                     alt={article.title || "Article Image"}
